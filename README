@@ -1,1 +1,11 @@
-This project is in idea collecting stage. No actual code jet. 
+PHP component/library to create estonian banklinks with ease.
+This is very early buggy version and I am still working on it. 
+
+Ideas:
+    http://lifeinide.blogspot.com/2010/12/multi-payment-gateway-module-for-zend.html
+    http://framework.zend.com/wiki/display/ZFPROP/Zend_Payment+-+Vadim+Gabriel#Zend_Payment-VadimGabriel-8.UseCases
+
+
+Description in estonian:
+  PHP komponent/library eesti pangalinkide loomiseks.
+  See on alles väga varane tööversioon mille töökindlust ei saa garanteerida. 
