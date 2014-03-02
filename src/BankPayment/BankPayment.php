@@ -39,19 +39,18 @@ class BankPayment {
         $gatewayClassName = 'BankPayment_Gateway_' . ucfirst($gateway);
         require_once realpath(dirname(__FILE__)).'/Gateway/' . ucfirst($gateway) . '.php';
 
-
         /**
          * Load the adapter class.  This throws an exception
          * if the specified class cannot be loaded.
          */
-        Zend_Loader::loadClass($gatewayClassName);
+        if(!class_exists($gatewayClassName)){
+          throw new Exception('Gateway class not found');
+        }
 
         /**
          * Create an instance of the adapter class.
          * Pass the config to the adapter class constructor.
          */
-        $paymentGateway = new $gatewayClassName($config);
-        
-        return $paymentGateway;
+        return new $gatewayClassName($config);
     }
 }
