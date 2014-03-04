@@ -3,6 +3,34 @@
 class BankPayment {
 
     /**
+     *
+     *
+     * @var int
+     */
+    public static $PAYMENT_STATUS_STARTED = 0;
+    
+    /**
+     * 
+     *
+     * @var int
+     */
+    public static $PAYMENT_STATUS_COMPLETED = 1;
+    
+    /**
+     *
+     *
+     * @var int
+     */
+    public static $PAYMENT_STATUS_CANCELED = 2;
+    
+    /**
+     *
+     *
+     * @var int
+     */
+    public static $PAYMENT_STATUS_ERROR = 3;
+    
+    /**
      * Factory for gateway classes.
      *
      * The first argument is a string that will represent the name
@@ -37,7 +65,13 @@ class BankPayment {
          * Construct gateway class name and filepath to create corresponding gateway instance
          */
         $gatewayClassName = 'BankPayment_Gateway_' . ucfirst($gateway);
-        require_once realpath(dirname(__FILE__)).'/Gateway/' . ucfirst($gateway) . '.php';
+        $filePath = realpath(dirname(__FILE__)) . '/Gateway/' . ucfirst($gateway) . '.php';
+
+        if(!file_exists($filePath)){
+          throw new Exception('Gateway class file is missing');
+        }
+        
+        require_once $filePath;
 
         /**
          * Load the adapter class.  This throws an exception
